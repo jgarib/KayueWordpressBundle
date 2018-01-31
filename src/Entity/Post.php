@@ -763,6 +763,23 @@ class Post
         return $this->metas;
     }
 
+	/**
+	 * Get Meta
+	 *
+	 * @param $key
+	 * @return mixed
+	 */
+	public function getMeta($key)
+	{
+		$meta = $this->metas->filter(function($meta) use ($key) {
+			if ($meta->getKey() == $key) {
+				return true;
+			}
+		});
+
+		return $meta->first()->getValue();
+	}
+
     /**
      * Add comment
      *
